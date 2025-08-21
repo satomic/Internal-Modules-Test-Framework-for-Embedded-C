@@ -42,8 +42,7 @@ embedded-c-application/
 │   ├── display/              # Display interface modules
 │   ├── power/                # Power management modules
 │   └── crypto/               # Cryptographic engine modules
-├── examples/                 # Example implementations
-├── tests/                    # Test implementations
+├── CMakeLists.txt            # Build configuration
 └── cmake/                    # Build configuration
 ```
 
