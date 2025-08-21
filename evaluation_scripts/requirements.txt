@@ -1,0 +1,7 @@
+# No external dependencies required
+# All evaluation scripts use only Python standard library modules
+
+# Optional dependencies for enhanced functionality:
+# matplotlib>=3.5.0  # For generating performance charts
+# pandas>=1.3.0      # For advanced data analysis
+# jinja2>=3.0.0      # For template-based report generation
