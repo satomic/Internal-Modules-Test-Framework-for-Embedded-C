@@ -2,6 +2,16 @@
 
 This directory contains Python scripts for analyzing and evaluating AI-generated code against internal module usage criteria.
 
+## Prerequisites
+
+Before using these evaluation scripts, ensure you have:
+1. **Cloned the source code repository**: https://github.com/satomic/Embedded-C-Application
+2. **Set up the environment**: The evaluation scripts analyze code that uses internal modules from the Embedded-C-Application repository
+
+## Repository Structure
+- **This repository**: Contains evaluation scripts and test scenarios
+- **Embedded-C-Application**: Contains actual internal modules implementation that AI tools should use
+
 ## Scripts Overview
 
 ### 1. module_analyzer.py
@@ -70,8 +80,17 @@ Each scenario includes additional targeted metrics:
 
 ## Requirements
 
+### Software Requirements
 - Python 3.7+
 - No external dependencies (uses only standard library)
+
+### Repository Requirements
+- **This repository**: For evaluation scripts and test scenarios
+- **Embedded-C-Application repository**: For internal modules source code
+  ```bash
+  git clone https://github.com/satomic/Embedded-C-Application.git
+  ```
+- In the Embedded-C-Application repository, use the AI ​​programming assistant to generate code based on prompts for each scenario.
 
 ## Output Formats
 
@@ -124,8 +143,21 @@ module_definitions = {
 
 ## Example Workflow
 
+### Setup
 ```bash
-# 1. Evaluate single file
+# 1. Clone both repositories
+git clone https://github.com/satomic/Internal-Modules-Test-Framework-for-Embedded-C.git
+git clone https://github.com/satomic/Embedded-C-Application.git
+```
+
+### Generate Code with AI Assistant
+1. In the Embedded-C-Application repository, use the AI programming assistant to generate code based on prompts for each scenario.
+2. for example a new `my_code.c` file could be created for the basic GPIO scenario.
+
+### Evaluation
+```bash
+# 1. Navigate to evaluation scripts, Evaluate single file (AI-generated code using internal modules)
+cd Internal-Modules-Test-Framework-for-Embedded-C/evaluation_scripts
 python scenario_evaluator.py basic_gpio my_code.c
 
 # 2. Batch evaluate multiple tools
@@ -139,6 +171,11 @@ python batch_evaluator.py ai_tools_results --output evaluation_results
 # 3. View results
 cat evaluation_results/comparison_report.md
 ```
+
+### Important Notes
+- The AI-generated code being evaluated should use internal modules from the Embedded-C-Application repository
+- Evaluation scripts will check for proper include statements, function calls, and usage patterns
+- Make sure AI tools have access to the internal modules documentation when generating code
 
 ## Validation and Testing
 

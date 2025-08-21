@@ -2,18 +2,37 @@
 
 This repository provides a comprehensive testing framework for evaluating AI programming tools' ability to understand and utilize custom internal modules in embedded systems development.
 
+## Source Code Repository
+
+**Important**: This repository contains the evaluation framework and test scenarios. The actual embedded C application with internal modules implementation is located in a separate repository:
+
+**Source Code Repository**: https://github.com/satomic/Embedded-C-Application
+
+You need to clone both repositories to run the complete evaluation:
+- This repository: Contains evaluation scripts and test scenarios
+- Embedded-C-Application: Contains the actual internal modules and test environment
+
 ## Overview
 
 The framework consists of:
-1. **Internal Modules**: A complete set of embedded system modules simulating real-world internal APIs
-2. **Test Scenarios**: Carefully designed test cases with varying complexity levels
-3. **Evaluation Scripts**: Python-based quantitative analysis tools
-4. **Comparison Framework**: Tools for benchmarking multiple AI tools
+1. **Internal Modules**: A complete set of embedded system modules simulating real-world internal APIs (located in Embedded-C-Application repo)
+2. **Test Scenarios**: Carefully designed test cases with varying complexity levels (in this repo)
+3. **Evaluation Scripts**: Python-based quantitative analysis tools (in this repo)
+4. **Comparison Framework**: Tools for benchmarking multiple AI tools (in this repo)
 
 ## Repository Structure
 
+**This Repository (Test Framework)**:
 ```
 internal_modules_test_framework/
+├── test_scenarios/           # Test scenarios and prompts
+├── evaluation_scripts/       # Python evaluation tools
+└── README.md                # This documentation
+```
+
+**Source Code Repository** (https://github.com/satomic/Embedded-C-Application):
+```
+embedded-c-application/
 ├── internal_modules/          # Internal module library
 │   ├── hal/                  # Hardware Abstraction Layer
 │   ├── sensors/              # Sensor interface modules
@@ -23,8 +42,8 @@ internal_modules_test_framework/
 │   ├── display/              # Display interface modules
 │   ├── power/                # Power management modules
 │   └── crypto/               # Cryptographic engine modules
-├── test_scenarios/           # Test scenarios and prompts
-├── evaluation_scripts/       # Python evaluation tools
+├── examples/                 # Example implementations
+├── tests/                    # Test implementations
 └── cmake/                    # Build configuration
 ```
 
@@ -95,6 +114,8 @@ The Python evaluation scripts provide quantitative metrics:
 
 ### Usage
 
+Make sure you have cloned both repositories. The evaluation scripts in this repository will analyze code that uses the internal modules from the Embedded-C-Application repository.
+
 ```bash
 # Analyze a single scenario
 python evaluation_scripts/scenario_evaluator.py basic_gpio code.c --output results.json
@@ -106,16 +127,52 @@ python evaluation_scripts/batch_evaluator.py ai_tools_directory --output evaluat
 python evaluation_scripts/batch_evaluator.py ai_tools_directory --report comparison.md
 ```
 
+## Getting Started
+
+### Step 1: Clone Both Repositories
+
+First, clone this evaluation framework repository:
+```bash
+git clone https://github.com/satomic/Internal-Modules-Test-Framework-for-Embedded-C.git
+```
+
+Then, clone the source code repository containing the internal modules:
+```bash
+git clone https://github.com/satomic/Embedded-C-Application.git
+```
+
+### Step 2: Setup Environment
+
+Install Python dependencies for evaluation scripts:
+```bash
+cd Internal-Modules-Test-Framework-for-Embedded-C
+pip install -r evaluation_scripts/requirements.txt
+```
+
+### Step 3: Build the Internal Modules (Optional)
+
+If you want to build and test the internal modules:
+```bash
+cd ../Embedded-C-Application
+mkdir build
+cd build
+cmake ..
+make
+```
+
 ## Building the Framework
 
 ### Prerequisites
-- CMake 3.16 or higher
+- CMake 3.16 or higher (for building the source code repository)
 - C/C++ compiler (GCC, Clang, or MSVC)
 - Python 3.7+ for evaluation scripts
 
 ### Build Instructions
 
+The internal modules source code is in the Embedded-C-Application repository:
+
 ```bash
+cd Embedded-C-Application
 mkdir build
 cd build
 cmake ..
@@ -160,11 +217,37 @@ target_link_libraries(your_target InternalModules::internal_modules_all)
 
 ## AI Tool Evaluation Workflow
 
-1. **Setup**: Clone repository, install dependencies
-2. **Generate Code**: Use AI tool with provided prompts
-3. **Analyze**: Run evaluation scripts on generated code
-4. **Compare**: Use batch evaluator for multiple tools
-5. **Report**: Generate comprehensive comparison reports
+### Setup Phase
+1. **Clone Repositories**: 
+   ```bash
+   git clone https://github.com/satomic/Internal-Modules-Test-Framework-for-Embedded-C.git
+   git clone https://github.com/satomic/Embedded-C-Application.git
+   ```
+
+2. **Install Dependencies**: 
+   ```bash
+   cd Internal-Modules-Test-Framework-for-Embedded-C
+   pip install -r evaluation_scripts/requirements.txt
+   ```
+
+3. **Build Internal Modules** (Optional):
+   ```bash
+   cd ../Embedded-C-Application
+   mkdir build && cd build
+   cmake .. && make
+   ```
+
+### Evaluation Phase
+1. **Prepare AI Tool**: Configure your AI tool with access to the internal modules documentation
+2. **Generate Code**: Use AI tool with provided test scenario prompts
+3. **Analyze Results**: Run evaluation scripts on generated code
+4. **Compare Tools**: Use batch evaluator for multiple tools
+5. **Generate Reports**: Create comprehensive comparison reports
+
+### Important Notes
+- Ensure AI tools have access to the internal modules API documentation from the Embedded-C-Application repository
+- Test scenarios are designed to require specific internal modules from the source repository
+- Evaluation scripts will check for proper usage of modules defined in Embedded-C-Application
 
 ## Example Results
 
